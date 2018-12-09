@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.kdev.archutectureappexample"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+ext{
+    lifecycleVer = "2.0.0"
+    supportLibraryVer = "1.0.0"
+    constraintLayoutVer = "1.1.2"
+    jUnitVer = "4.12"
+    testRunnerVer = "1.0.2"
+    espressoCoreVer = "3.1.0"
+    roomVer = "2.1.0-alpha03"
+    materialDesignVer = "1.0.0-rc01"
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Support
+    implementation "androidx.appcompat:appcompat:$supportLibraryVer"
+    implementation "com.google.android.material:material:$materialDesignVer"
+    implementation "androidx.cardview:cardview:$supportLibraryVer"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVer"
+
+    //Testing
+    testImplementation "junit:junit:$jUnitVer"
+    androidTestImplementation "com.android.support.test:runner:$testRunnerVer"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVer"
+
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVer"
+
+    //Room
+    implementation "androidx.room:room-runtime:$roomVer"
+    annotationProcessor "androidx.room:room-compiler:$roomVer"
+
+}
