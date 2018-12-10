@@ -20,14 +20,14 @@ android {
 
 ext{
     lifecycleVer = "2.0.0"
-    supportLibraryVer = "1.0.0"
-    constraintLayoutVer = "1.1.2"
+    supportLibraryVer = "1.0.2"
+    constraintLayoutVer = "1.1.3"
     jUnitVer = "4.12"
     testRunnerVer = "1.0.2"
     espressoCoreVer = "3.1.0"
     roomVer = "2.1.0-alpha03"
-    materialDesignVer = "1.0.0-rc01"
-
+    materialDesignVer = "1.1.0-alpha01"
+    cardViewVer = "1.0.0"
 }
 
 dependencies {
@@ -36,7 +36,7 @@ dependencies {
     //Support
     implementation "androidx.appcompat:appcompat:$supportLibraryVer"
     implementation "com.google.android.material:material:$materialDesignVer"
-    implementation "androidx.cardview:cardview:$supportLibraryVer"
+    implementation "androidx.cardview:cardview:$cardViewVer"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVer"
 
     //Testing
