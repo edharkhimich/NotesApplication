@@ -13,7 +13,7 @@ import androidx.lifecycle.LiveData;
 
 public class TitleViewModel extends AndroidViewModel {
 
-    NoteRepository repository;
+    private NoteRepository repository;
 
 
     public TitleViewModel(@NonNull Application application) {

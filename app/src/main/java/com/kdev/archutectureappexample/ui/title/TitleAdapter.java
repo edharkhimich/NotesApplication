@@ -23,6 +23,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleViewHol
             this.items.clear();
         }
         this.items.addAll(items);
+        notifyDataSetChanged();
     }
 
     @NonNull

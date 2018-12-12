@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ArchutectureAppExample</string>
+    <string name="addNoteTitle">Title</string>
+    <string name="addNoteDescription">Description</string>
+    <string name="addNotePriority">Priority</string>
+    <string name="addNoteToolbarTitle">Add Note</string>
+    <string name="fillUpAllFields">Fill up all fields please</string>
 </resources>

@@ -8,7 +8,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -16,14 +16,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
 }
 
-ext{
+ext {
     lifecycleVer = "2.0.0"
     supportLibraryVer = "1.0.2"
     constraintLayoutVer = "1.1.3"
     jUnitVer = "4.12"
-    testRunnerVer = "1.0.2"
+    testRunnerVer = "1.1.0"
     espressoCoreVer = "3.1.0"
     roomVer = "2.1.0-alpha03"
     materialDesignVer = "1.1.0-alpha01"
@@ -41,7 +45,7 @@ dependencies {
 
     //Testing
     testImplementation "junit:junit:$jUnitVer"
-    androidTestImplementation "com.android.support.test:runner:$testRunnerVer"
+    androidTestImplementation "androidx.test:runner:$testRunnerVer"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVer"
 
     // LiveData
