@@ -5,4 +5,6 @@
     <string name="addNotePriority">Priority</string>
     <string name="addNoteToolbarTitle">Add Note</string>
     <string name="fillUpAllFields">Fill up all fields please</string>
+    <string name="titleMenuDeleteAll">Delete All</string>
+    <string name="titleAllNotesDeleted">All notes deleted</string>
 </resources>

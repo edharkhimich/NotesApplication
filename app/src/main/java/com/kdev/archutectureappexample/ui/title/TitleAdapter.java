@@ -43,6 +43,10 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleViewHol
         return items.size();
     }
 
+    public Note getCurrentItem(int position){
+        return items.get(position);
+    }
+
     class TitleViewHolder extends RecyclerView.ViewHolder{
 
         private TextView titleTxtV;
