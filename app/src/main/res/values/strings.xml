@@ -1,11 +1,19 @@
 <resources>
     <string name="app_name">ArchutectureAppExample</string>
+
+    <!-- Add Note -->
     <string name="addNoteTitle">Title</string>
     <string name="addNoteDescription">Description</string>
     <string name="addNotePriority">Priority</string>
     <string name="addNoteToolbarTitle">Add Note</string>
-    <string name="fillUpAllFields">Fill up all fields please</string>
+    <string name="addNoteFillUpAllFields">Fill up all fields please</string>
+    <string name="addNoteEditNote">Edit note</string>
+
+    <!-- Title -->
     <string name="titleMenuDeleteAll">Delete All</string>
     <string name="titleAllNotesDeleted">All notes deleted</string>
     <string name="titleNoteNotSave">Note not save</string>
+    <string name="titleNoteCreated">Note created</string>
+    <string name="titleNoteUpdated">Note updated</string>
+
 </resources>

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleViewHolder> {
 
     private List<Note> items = new ArrayList<>();
+    private OnItemClickListener listener;
 
     public void setItems(List<Note> items){
         if (this.items.size() > 0){
@@ -53,12 +54,18 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleViewHol
         private TextView descTxtV;
         private TextView priority;
 
-
         TitleViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTxtV = itemView.findViewById(R.id.itemTitleTxtV);
             descTxtV = itemView.findViewById(R.id.itemDescriptionTxtV);
             priority = itemView.findViewById(R.id.itemPriorityTxtV);
+
+            itemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if(listener != null && position != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(items.get(position));
+                }
+            });
         }
 
         void bind(Note note){
@@ -66,5 +73,13 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleViewHol
             descTxtV.setText(note.getDescription());
             priority.setText(String.valueOf(note.getPriority()));
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Note note);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
     }
 }

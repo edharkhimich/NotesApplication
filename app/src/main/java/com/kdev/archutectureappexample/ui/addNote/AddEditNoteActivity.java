@@ -15,11 +15,16 @@ import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import static com.kdev.archutectureappexample.utils.AppConstants.DEFAULT_ID;
+import static com.kdev.archutectureappexample.utils.AppConstants.DEFAULT_PRIORITY;
 import static com.kdev.archutectureappexample.utils.AppConstants.EXTRA_DESCRIPTION;
+import static com.kdev.archutectureappexample.utils.AppConstants.EXTRA_ID;
 import static com.kdev.archutectureappexample.utils.AppConstants.EXTRA_PRIORITY;
 import static com.kdev.archutectureappexample.utils.AppConstants.EXTRA_TITLE;
+import static com.kdev.archutectureappexample.utils.AppConstants.NUMBER_PICKER_MAX_VALUE;
+import static com.kdev.archutectureappexample.utils.AppConstants.NUMBER_PICKER_MIN_VALUE;
 
-public class AddNoteActivity extends AppCompatActivity {
+public class AddEditNoteActivity extends AppCompatActivity {
 
     private EditText titleEdTxt;
     private EditText descEdTxt;
@@ -38,11 +43,24 @@ public class AddNoteActivity extends AppCompatActivity {
         descEdTxt = findViewById(R.id.addNoteDescEdTxt);
         numberPicker = findViewById(R.id.addNoteNumberPicker);
 
-        numberPicker.setMinValue(1);
-        numberPicker.setMaxValue(10);
+        numberPicker.setMinValue(NUMBER_PICKER_MIN_VALUE);
+        numberPicker.setMaxValue(NUMBER_PICKER_MAX_VALUE);
 
         Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.ic_close);
-        setTitle(R.string.addNoteToolbarTitle);
+
+        checkIntent();
+    }
+
+    private void checkIntent() {
+        Intent intent = getIntent();
+        if (intent.hasExtra(EXTRA_ID)) {
+            setTitle(R.string.addNoteEditNote);
+            titleEdTxt.setText(intent.getStringExtra(EXTRA_TITLE));
+            descEdTxt.setText(intent.getStringExtra(EXTRA_DESCRIPTION));
+            numberPicker.setValue(intent.getIntExtra(EXTRA_PRIORITY, DEFAULT_PRIORITY));
+        } else {
+            setTitle(R.string.addNoteToolbarTitle);
+        }
     }
 
     @Override
@@ -54,8 +72,8 @@ public class AddNoteActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.saveNote :
+        switch (item.getItemId()) {
+            case R.id.saveNote:
                 saveNote();
                 return true;
             default:
@@ -68,17 +86,24 @@ public class AddNoteActivity extends AppCompatActivity {
         String description = descEdTxt.getText().toString();
         int priority = numberPicker.getValue();
 
-        if(title.trim().isEmpty()|| description.trim().isEmpty()){
-            Toast.makeText(this, getString(R.string.fillUpAllFields), Toast.LENGTH_SHORT).show();
+        if (title.trim().isEmpty() || description.trim().isEmpty()) {
+            Toast.makeText(this, getString(R.string.addNoteFillUpAllFields), Toast.LENGTH_SHORT).show();
         } else {
             Intent data = new Intent();
             data.putExtra(EXTRA_TITLE, title);
             data.putExtra(EXTRA_DESCRIPTION, description);
             data.putExtra(EXTRA_PRIORITY, priority);
 
+            int id = getIntent().getIntExtra(EXTRA_ID, DEFAULT_ID);
+
+            if (id != DEFAULT_ID) {
+                data.putExtra(EXTRA_ID, id);
+            }
+
             setResult(RESULT_OK, data);
 
             finish();
+
         }
     }
 }
