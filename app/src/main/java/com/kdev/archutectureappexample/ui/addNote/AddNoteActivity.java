@@ -9,12 +9,10 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.kdev.archutectureappexample.R;
 
 import java.util.Objects;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import static com.kdev.archutectureappexample.utils.AppConstants.EXTRA_DESCRIPTION;

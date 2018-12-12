@@ -13,7 +13,6 @@ import com.kdev.archutectureappexample.data.model.db.Note;
 import com.kdev.archutectureappexample.ui.addNote.AddNoteActivity;
 
 import java.util.List;
-import java.util.zip.Inflater;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +23,9 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static androidx.recyclerview.widget.ItemTouchHelper.ACTION_STATE_SWIPE;
+import static androidx.recyclerview.widget.ItemTouchHelper.LEFT;
+import static androidx.recyclerview.widget.ItemTouchHelper.RIGHT;
 import static com.kdev.archutectureappexample.utils.AppConstants.ADD_NOTE_REQUEST;
 import static com.kdev.archutectureappexample.utils.AppConstants.EXTRA_DESCRIPTION;
 import static com.kdev.archutectureappexample.utils.AppConstants.EXTRA_PRIORITY;
@@ -64,7 +66,7 @@ public class TitleActivity extends AppCompatActivity {
 
             saveToDb(title, description, priority);
         } else {
-            Toast.makeText(this, "Note not save", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.titleNoteNotSave), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -102,10 +104,11 @@ public class TitleActivity extends AppCompatActivity {
         adapter = new TitleAdapter();
         recyclerView.setAdapter(adapter);
 
-        new ItemTouchHelper(new ItemTouchHelper.Callback() {
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, LEFT
+                | RIGHT) {
             @Override
             public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
-                return 0;
+                return makeFlag(ACTION_STATE_SWIPE, LEFT | RIGHT);
             }
 
             @Override

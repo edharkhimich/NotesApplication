@@ -7,4 +7,5 @@
     <string name="fillUpAllFields">Fill up all fields please</string>
     <string name="titleMenuDeleteAll">Delete All</string>
     <string name="titleAllNotesDeleted">All notes deleted</string>
+    <string name="titleNoteNotSave">Note not save</string>
 </resources>
