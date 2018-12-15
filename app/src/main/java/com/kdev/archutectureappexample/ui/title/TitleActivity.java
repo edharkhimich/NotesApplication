@@ -12,12 +12,9 @@ import com.kdev.archutectureappexample.R;
 import com.kdev.archutectureappexample.data.model.db.Note;
 import com.kdev.archutectureappexample.ui.addNote.AddEditNoteActivity;
 
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -49,7 +46,7 @@ public class TitleActivity extends AppCompatActivity {
         bindView();
 
         viewModel = ViewModelProviders.of(this).get(TitleViewModel.class);
-        viewModel.getAllNotes().observe(this, notes -> adapter.setItems(notes));
+        viewModel.getAllNotes().observe(this, notes -> adapter.submitList(notes));
     }
 
 

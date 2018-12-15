@@ -8,24 +8,33 @@ import android.widget.TextView;
 import com.kdev.archutectureappexample.R;
 import com.kdev.archutectureappexample.data.model.db.Note;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleViewHolder> {
+public class TitleAdapter extends ListAdapter<Note, TitleAdapter.TitleViewHolder> {
 
-    private List<Note> items = new ArrayList<>();
     private OnItemClickListener listener;
 
-    public void setItems(List<Note> items){
-        if (this.items.size() > 0){
-            this.items.clear();
-        }
-        this.items.addAll(items);
-        notifyDataSetChanged();
+    public TitleAdapter() {
+        super(DIFF_CALLBACK);
     }
+
+    private final static DiffUtil.ItemCallback<Note> DIFF_CALLBACK = new DiffUtil.ItemCallback<Note> (){
+
+        @Override
+        public boolean areItemsTheSame(@NonNull Note oldItem, @NonNull Note newItem) {
+            return oldItem.getId() == newItem.getId();
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Note oldItem, @NonNull Note newItem) {
+            return oldItem.getTitle().equals(newItem.getTitle()) &&
+                    oldItem.getDescription().equals(newItem.getDescription()) &&
+                    oldItem.getPriority() == newItem.getPriority();
+        }
+    };
 
     @NonNull
     @Override
@@ -36,16 +45,12 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleViewHol
 
     @Override
     public void onBindViewHolder(@NonNull TitleViewHolder holder, int position) {
-        holder.bind(items.get(position));
+        holder.bind(getItem(position));
     }
 
-    @Override
-    public int getItemCount() {
-        return items.size();
-    }
 
     public Note getCurrentItem(int position){
-        return items.get(position);
+        return getItem(position);
     }
 
     class TitleViewHolder extends RecyclerView.ViewHolder{
@@ -63,7 +68,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleViewHol
             itemView.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if(listener != null && position != RecyclerView.NO_POSITION) {
-                    listener.onItemClick(items.get(position));
+                    listener.onItemClick(getItem(position));
                 }
             });
         }
